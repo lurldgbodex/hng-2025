@@ -24,10 +24,5 @@ mvn spring-boot:run
 - access the api on http://localhost:8080/api/v1/info using postman or curl
 - access the doc on http://localhost:8080/docs
 
-## HNG Links
-- [python developers](https://hng.tech/hire/python-developers)
-- [csharp developers](https://hng.tech/hire/csharp-developers)
-- [goland developers](https://hng.tech/hire/golang-developers)
-- [php developers](https://hng.tech/hire/php-developers)
+## HNG Link
 - [java developers](https://hng.tech/hire/java-developers)
-- [nodejs developers](https://hng.tech/hire/nodejs-developers)
