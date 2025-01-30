@@ -3,7 +3,6 @@ LABEL authors="lurldgbodex"
 WORKDIR /workspace/app
 
 COPY . .
-RUN mvn clean package
 
 RUN mkdir -p target/extracted
 
@@ -20,4 +19,4 @@ COPY --from=build ${EXTRACTED}/spring-boot-loader/ ./
 COPY --from=build ${EXTRACTED}/snapshot-dependencies/ ./
 COPY --from=build ${EXTRACTED}/application/ ./
 
-ENTRYPOINT ["java", "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE:-docker}", "org.springframework.boot.loader.launch.JarLauncher"]
+ENTRYPOINT ["java",  "org.springframework.boot.loader.launch.JarLauncher"]
