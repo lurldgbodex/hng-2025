@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/info")
+@RequestMapping("/info")
 @CrossOrigin(origins = "*")
 @Tag(name = "AppController", description = "Retrieve basic info")
 public class AppController {
