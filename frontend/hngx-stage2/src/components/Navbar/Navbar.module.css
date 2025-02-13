@@ -1,0 +1,72 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #197686;
+  border-radius: 12px;
+  backdrop-filter: blur(2px);
+  padding: 12px 16px;
+  width: 320px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  border: 1px solid #0e464f;
+  border-radius: 12px;
+  background: #052f35;
+  padding: 6px 8px;
+}
+
+.logoTitle {
+  width: 47.793px;
+  height: 22.624px;
+}
+
+.ticket {
+  display: flex;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(213, 234, 0, 0.1);
+  background: #fff;
+  color: #0a0c11;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.navItems {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .navbar {
+    width: 83.3%;
+    border-radius: 24px;
+  }
+
+  .navItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .item {
+    color: #b3b3b3;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px;
+  }
+
+  .active {
+    color: #fff;
+  }
+}
