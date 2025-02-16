@@ -2,8 +2,10 @@ import { GrLocationPin } from 'react-icons/gr';
 import styles from './TicketSelection.module.css';
 import { SetStateAction, useState } from 'react';
 import Button from '../Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const TicketSelection = () => {
+    const navigate = useNavigate();
 
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -25,12 +27,14 @@ const TicketSelection = () => {
             <div className={styles.container}>
                 <div className={styles.selectionBanner}>
                     <div className={styles.content}>
-                    <h2>Techember Fest "25</h2>
-                    <p className={styles.bannerTexts}>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
-                    <div className={styles.location}>
-                        <p><GrLocationPin /> [Event Location]</p>
-                        <p>March 15, 2025 | 7:00 PM </p>
-                    </div>
+                        <div>
+                        <h2>Techember Fest "25</h2>
+                        <p className={styles.bannerTexts}>Join us for an unforgettable experience at <span>The Unknown!</span> Secure your spot now.</p>
+                        </div>
+                        <div className={styles.location}>
+                            <p><GrLocationPin /> Abstract Location <span>| |</span></p>
+                            <p>March 15, 2025 | 7:00 PM </p>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.divider}></div>
@@ -77,6 +81,7 @@ const TicketSelection = () => {
                 <div className={styles.buttonContainer}>
                     <Button 
                         text="Next"
+                        onClick={() => navigate('/form')}
                         className={styles.button}
                     />
                     <Button 
