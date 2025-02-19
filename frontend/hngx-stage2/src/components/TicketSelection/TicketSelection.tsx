@@ -1,17 +1,30 @@
-import { GrLocationPin } from 'react-icons/gr';
 import styles from './TicketSelection.module.css';
-import { SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 
 const TicketSelection = () => {
     const navigate = useNavigate();
 
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedTicket, setSelectedTicket] = useState<string>(() => {
+        return localStorage.getItem('selectedTicket') || 'REGULAR';
+    });
 
-    const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    const [selectedOption, setSelectedOption] = useState<string>(() => {
+        return localStorage.getItem('noOfTickets') || '1';
+    });
+
+    const handleTicketSelected = (ticketType: string) => {
+        setSelectedTicket(ticketType);
+        localStorage.setItem('selectedTicket', ticketType);
+    };
+
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.target.value);
+        localStorage.setItem('noOfTickets', event.target.value);
     }
+
+
     return (
         <div className={styles.ticketSelection}>
             <div className={styles.step}>
@@ -32,7 +45,7 @@ const TicketSelection = () => {
                         <p className={styles.bannerTexts}>Join us for an unforgettable experience at <span>The Unknown!</span> Secure your spot now.</p>
                         </div>
                         <div className={styles.location}>
-                            <p><GrLocationPin /> Abstract Location <span>| |</span></p>
+                            <p>📍Abstract Location <span>| |</span></p>
                             <p>March 15, 2025 | 7:00 PM </p>
                         </div>
                     </div>
@@ -41,7 +54,10 @@ const TicketSelection = () => {
                 <div className={styles.ticketType}>
                     <h3>Select Ticket Type:</h3>
                     <div className={styles.typeContainer}>
-                        <div className={`${styles.type} ${styles.active}`}>
+                        <div 
+                            className={`${styles.type} ${selectedTicket === 'REGULAR' ? styles.active : ""}`}
+                            onClick={() =>handleTicketSelected('REGULAR')}
+                        >
                             <h3>Free</h3>
                             <div>
                                 <p className={styles.uppercase}>Regular Access</p>
@@ -49,14 +65,20 @@ const TicketSelection = () => {
                             </div>
                             
                         </div>
-                        <div className={styles.type}>
+                        <div 
+                             className={`${styles.type} ${selectedTicket === 'VIP' ? styles.active : ""}`}
+                             onClick={() => handleTicketSelected('VIP')}
+                        >
                             <h3>$150</h3>
                             <div>
                                 <p className={styles.uppercase}>Vip Access</p>
                                 <p className={styles.numb}>20/52</p>
                             </div>
                         </div>
-                        <div className={styles.type}>
+                        <div 
+                             className={`${styles.type} ${selectedTicket === 'VVIP' ? styles.active : ""}`}
+                             onClick={() => handleTicketSelected('VVIP')}
+                        >
                             <h3>$150</h3>
                             <div>
                                 <p className={styles.uppercase}>vvip Access</p>

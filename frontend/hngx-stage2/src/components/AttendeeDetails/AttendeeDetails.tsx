@@ -38,9 +38,6 @@ const AttendeeDetails = () => {
         }
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem('formData', JSON.stringify(formData));
-    }, [formData]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -114,7 +111,8 @@ const AttendeeDetails = () => {
     const handleSubmit = () => {
         if (validateForm()) {
             navigate('/ticket');
-            localStorage.removeItem('formData');
+        
+            localStorage.setItem('formData', JSON.stringify(formData));
         }
     }
 
@@ -156,8 +154,8 @@ const AttendeeDetails = () => {
                         )}
                         </div>
                         <input ref={fileInputRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} />
-                        {errors.imageUrl && <p className={styles.error}>{errors.imageUrl}</p>}
                     </div>
+                    {errors.imageUrl && <p className={styles.error}>{errors.imageUrl}</p>}
                 </div>
             <div className={styles.divider}></div>
             <div className={styles.form}>

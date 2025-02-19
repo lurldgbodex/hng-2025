@@ -6,7 +6,7 @@
   background: #08252b;
   border: 1px solid #0e464f;
   border-radius: 32px;
-  width: 375px;
+  width: 340px;
   padding: 24px;
   margin-top: 16px;
   margin-bottom: 40px;
@@ -75,7 +75,7 @@
 
 .selectionBanner h2 {
   font-family: "Road Rage";
-  font-size: 48px;
+  font-size: 46px;
   font-style: normal;
   font-weight: 400;
   color: #fafafa;

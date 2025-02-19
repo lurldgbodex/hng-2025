@@ -2,32 +2,58 @@ import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import styles from './TicketReady.module.css';
 import barCode from '../../assets/bar-code.png';
+import html2canvas from 'html2canvas';
+import { useNavigate } from 'react-router-dom';
+
 
 const TicketReady = () => {
-    const [userData, setUserData] = useState<{name: string; email: string, ticketType: string, noOfTicket: string, specailRequest: string, image: string}>({
+    const navigate = useNavigate();
+
+    const [userData, setUserData] = useState<{
+        name: string;
+        email: string;
+        ticketType: string;
+        noOfTicket: string;
+        specialRequest: string;
+        image: string;
+    }>({
         name: '',
         email: '',
         ticketType: '',
         noOfTicket: '',
-        specailRequest: '',
+        specialRequest: '',
         image: '',
     });
 
     useEffect(() => {
-        const storedName = localStorage.getItem('name') || 'John Doe';
-        const storedEmail = localStorage.getItem('email') || 'johndoe@mail.com';
-        const ticketType = localStorage.getItem('type') || 'VIP';
-        const noOfTicket = localStorage.getItem('noOfTicket') || '1';
-        const specailRequest = localStorage.getItem('request') || 'nill';
-        const image = localStorage.getItem('imageUrl') || '';
+       const formDataString = localStorage.getItem('formData');
+       const formData = formDataString ? JSON.parse(formDataString) : {};
 
-        setUserData({ 
-            name: storedName, 
-            email: storedEmail, 
-            ticketType, noOfTicket, 
-            specailRequest, image
-        })
+       const ticketType = localStorage.getItem('selectedTicket') || 'VIP';
+       const noOfTicket = localStorage.getItem('noOfTickets') || '1';
+
+       setUserData({
+            name: formData.name || 'John Doe',
+            email: formData.email || 'johndoe@mail.com',
+            image: formData.imageUrl || '#',
+            specialRequest: formData.project || 'nill ?',
+            ticketType,
+            noOfTicket,
+       });
     }, []);
+
+    const handleDownload = () => {
+        const ticketCard = document.querySelector(`.${styles.ticketCard}`) as HTMLElement;
+
+        if (!ticketCard || !(ticketCard instanceof HTMLElement)) return;
+
+        html2canvas(ticketCard, { scale: 2 }).then((canvas) => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'ticket.png'
+            link.click();
+        });
+    }
 
     return (
         <div className={styles.ticketContainer}>
@@ -79,7 +105,7 @@ const TicketReady = () => {
                         </div>
                         <div className={styles.request}>
                             <p className={styles.dataTitle}>Special request?</p>
-                            <p className={styles.rvalue}>{userData.specailRequest}</p>
+                            <p className={styles.rvalue}>{userData.specialRequest}</p>
                         </div>
                     </div>
                     
@@ -92,11 +118,11 @@ const TicketReady = () => {
                 <Button 
                     text="Download Ticket"
                     className={styles.button}
-                   
+                    onClick={handleDownload}
                 />
                 <Button 
                     text="Book Another Ticket"
-                   
+                    onClick={() => navigate('/')}
                 />
             </div>
         </div>
