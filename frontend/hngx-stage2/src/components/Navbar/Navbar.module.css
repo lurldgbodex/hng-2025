@@ -6,7 +6,7 @@
   border-radius: 12px;
   backdrop-filter: blur(2px);
   padding: 12px 16px;
-  width: 350px;
+  width: 320px;
   max-width: 1200px;
 }
 
@@ -51,6 +51,8 @@
   .navbar {
     width: 88.3%;
     border-radius: 24px;
+    position: relative;
+    z-index: 1000;
   }
 
   .navItems {
