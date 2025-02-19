@@ -51,6 +51,8 @@
   .navbar {
     width: 88.3%;
     border-radius: 24px;
+    position: relative;
+    z-index: 1000;
   }
 
   .navItems {

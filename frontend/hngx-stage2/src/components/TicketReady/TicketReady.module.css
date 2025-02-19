@@ -277,4 +277,16 @@
   .buttonContainer {
     flex-direction: row-reverse;
   }
+
+  @media (min-width: 800px) {
+    .ticketContainer {
+      width: 700px;
+      position: absolute;
+      top: -26px;
+    }
+
+    .step {
+      opacity: 0.4;
+    }
+  }
 }
